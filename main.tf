@@ -15,12 +15,14 @@ locals {
 #---------------------------------------------------------------
 # Generates SSH2 key Pair for Linux VM's (Dev Environment only)
 #---------------------------------------------------------------
-resource "tls_private_key" "rsa" {
-  count     = var.generate_admin_ssh_key ? 1 : 0
-  algorithm = "RSA"
-  rsa_bits  = 4096
+terraform {
+  required_providers {
+    azurerm = "2.52.0"      
+    }
 }
-
+provider "azurerm" {
+features {}
+}
 #----------------------------------------------------------
 # Resource Group, VNet, Subnet selection & Random Resources
 #----------------------------------------------------------
